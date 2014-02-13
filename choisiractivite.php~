@@ -1,0 +1,43 @@
+<?php
+session_start();
+if(!empty($_SESSION['ajout'])){
+  echo "Bienvenue ici ".$_SESSION['login']."<br/>";
+  echo "Votre SID est ".session_id()."<br/>";
+  $_SESSION['nomActivite']=$_POST['nomActivite'];
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Ajout d\'une activite</title>
+</head>
+<body>
+<form method="POST" action="ajout.php">
+<fieldset>
+<legend> Ajout </legend>
+<p> Quelle activité voulez-vous ajouter ?
+<br/>
+<input type="radio" name="nomActivite" value="anglais">
+Anglais<br/>
+<input type="radio" name="nomActivite" value="cafe">
+Café<br/>
+<input type="radio" name="nomActivite" value="java">
+Java<br/>
+<input type="radio" name="nomActivite" value="php">
+PHP<br/>
+<input type="radio" name="nomActivite" value="python">
+Python<br/>
+<input type="radio" name="nomActivite" value="repos">
+Repos<br/>
+</p>
+</fieldset>
+</form>
+<form action="choisirheure.php" method="POST">
+<p><input type='submit' value='choir cette activité'></p>
+</form>
+<hr>
+
+</body>
+</html>

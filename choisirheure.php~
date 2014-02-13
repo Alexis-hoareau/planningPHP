@@ -1,0 +1,67 @@
+<?php
+
+require_once('connect.php');
+
+$dns="mysql:dbname=".BASE.";host=".SERVER;
+try{
+  $connexion=new PDO($dns,USER,PASSWD);
+}
+catch(PDOException $e){
+  printf("Echec de la connexion : %s\n", $e->getMessage());
+  exit();
+}
+
+
+session_start();
+if(!empty($_SESSION['ajout'])){
+  echo "Bienvenue ici ".$_SESSION['login']."<br/>";
+  echo "Votre SID est ".session_id()."<br/>";
+  $_SESSION['heure']=$_POST['heure'];
+}
+?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Ajout d\'une activite</title>
+</head>
+<body>
+<form method="POST" action="ajout.php">
+<fieldset>
+<legend> Ajout </legend>
+<p> A quelle heure voulez-vous placer cette activité ?
+<br/>
+<input type="radio" name="heure" value="9">
+de 9 à 10 h<br/>
+<input type="radio" name="heure" value="10">
+de 10 à 11 h<br/>
+<input type="radio" name="heure" value="11">
+de 11 à 12 h<br/>
+<input type="radio" name="heure" value="14">
+de 14 à 15 h<br/>
+<input type="radio" name="heure" value="15">
+de 15 à 16 h<br/>
+<input type="radio" name="heure" value="16">
+de 16 à 17 h<br/>
+<input type="radio" name="heure" value="17">
+de 17 à 18 h<br/>
+<input type="radio" name="heure" value="18">
+de 18 à 19 h<br/>
+<input type="radio" name="heure" value="19">
+de 19 à 20 h<br/>
+<input type="radio" name="heure" value="20">
+de 20 à 21 h<br/>
+<input type="radio" name="heure" value="21">
+de 21 à 22 h<br/>
+</p>
+</fieldset>
+</form>
+<form action="ajouter.php" method="POST">
+<p><input type='submit' value='choir cette heure'></p>
+</form>
+<hr>
+
+</body>
+</html>

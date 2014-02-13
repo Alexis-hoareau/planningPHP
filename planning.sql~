@@ -1,0 +1,53 @@
+--
+-- Structure de la table `activite`
+--
+
+CREATE TABLE IF NOT EXISTS `activite` (
+  `nomActivite` varchar(20) NOT NULL,
+  PRIMARY KEY (`nomActivite`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `participant`
+--
+
+CREATE TABLE IF NOT EXISTS `participant` (
+  `login` varchar(10) NOT NULL,
+  `password` varchar(30) NOT NULL,
+  PRIMARY KEY (`login`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `seance`
+--
+
+CREATE TABLE IF NOT EXISTS `seance` (
+  `heure` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`heure`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `participe`
+--
+
+CREATE TABLE IF NOT EXISTS `participe` (
+  `login` varchar(10) NOT NULL,
+  `nomActivite` varchar(20) NOT NULL,
+  `heure` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY(login, heure)
+  FOREIGN KEY(login) REFERENCES participant(login),
+  FOREIGN KEY(nomActivite) REFERENCES activite(nomActivite),
+  FOREIGN KEY(heure) REFERENCES seance(heure)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
